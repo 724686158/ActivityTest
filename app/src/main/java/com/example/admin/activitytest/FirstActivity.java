@@ -24,9 +24,14 @@ public class FirstActivity extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "HELLO WORLD";
                 Intent intent = new Intent("com.example.admin.activitytest.ACTION_START");
                 intent.addCategory("com.example.admin.activitytest.MY_CATEGORY");
-                startActivity(intent);
+                intent.putExtra("extra_data", data);
+                startActivityForResult(intent, 1);
+
+
+
             }
         });
     }
@@ -51,5 +56,20 @@ public class FirstActivity extends Activity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK)
+                {
+                    String ss = data.getStringExtra("data_return");
+                    button1.setText(ss);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
