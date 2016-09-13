@@ -1,6 +1,7 @@
 package com.example.admin.activitytest;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +24,9 @@ public class FirstActivity extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FirstActivity.this, "YOU CLICKED BUTTON 1", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent("com.example.admin.activitytest.ACTION_START");
+                intent.addCategory("com.example.admin.activitytest.MY_CATEGORY");
+                startActivity(intent);
             }
         });
     }
